@@ -1,5 +1,5 @@
 # 
-#Author: leolucas(=Enter)
+#Authors: leolucas(=Enter), Masked
 #About this script: 
 #This HUD is a script that contain HP+MP+Stamina and Hunger bar.
 #Stamina and Hunger are based in a percentage of MP/MMP.
