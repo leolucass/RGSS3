@@ -2,7 +2,7 @@
 #About this script: 
 #This MOD is a script that contain a 
 #HUD (HP,MP, thirsty, Stamina and Hunger bar);
-#if you press the Shift key then these bars become visible.
+#if you press the """S""" key then these bars become visible.
 #and
 #If the player have stamina enough then he can run pressing the SHIFT key else he not can run
 #If thirsty <= 1 then Game Over
