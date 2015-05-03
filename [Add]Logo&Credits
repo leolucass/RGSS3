@@ -1,0 +1,175 @@
+#Authors: leolucas(=Enter)
+#About this script:
+#This script will show two image to represent the logo of your team.
+#This script also will show the team members by strings configured in arrays. 
+#Do you set the strings or add more if you want.
+#~ #Search for "#edit here" to set the string texts
+#For pattern you have 12 lines. But you can add more following the code pattern
+#
+#have fun enjoy it. 
+#Enter
+class EntMessages < Sprite
+  def initialize
+    super
+    self.bitmap = bitmap = Bitmap.new(700,777) #width and height
+    self.bitmap.font.size = 17
+    self.bitmap.font.name = "Segoe UI"
+    #initialize the lines array
+    #index 0 = define color, index 1 = string field
+    #here is defined the numbers of lines available
+    $entline1 = [Color.new(255,255,255), ""]
+    $entline2 = [Color.new(255,255,255), ""]
+    $entline3 = [Color.new(255,255,255), ""]
+    $entline4 = [Color.new(255,255,255), ""]
+    $entline5 = [Color.new(255,255,255), ""]
+    $entline6 = [Color.new(255,255,255), ""]
+    $entline7 = [Color.new(255,255,255), ""]
+    $entline8 = [Color.new(255,255,255), ""]
+    $entline9 = [Color.new(255,255,255), ""]
+    $entline10 = [Color.new(255,255,255), ""]
+    $entline11 = [Color.new(255,255,255), ""]
+    $entline12 = [Color.new(255,255,255), ""]
+    self.x = 70 #alinha ao centro, 1 = fica no canto esquerdo
+    self.y = 70 #300
+    @enmessages = 11
+    refresh
+  end
+      
+  def refresh
+    self.bitmap.clear
+  #write the messages at screen, taking the index 1 that 
+  #matches the second parameter of array entline and cointain    
+  #the space for input the string -> the msg
+    if @enmessages == 12
+    self.bitmap.font.color = $entline1[0]
+    self.bitmap.draw_text(10, 0, 900, 32, $entline1[1], 0)
+    end
+    if @enmessages >= 11
+    self.bitmap.font.color = $entline2[0]
+    self.bitmap.draw_text(10, 20, 900, 32, $entline2[1], 0)
+    end
+    if @enmessages >=  10
+    self.bitmap.font.color = $entline3[0]
+    self.bitmap.draw_text(10, 40, 900, 32, $entline3[1], 0)
+    end
+    if @enmessages >= 9
+    self.bitmap.font.color = $entline4[0]
+    self.bitmap.draw_text(10, 60, 900, 32, $entline4[1], 0)
+    end
+    if @enmessages >=  8
+    self.bitmap.font.color = $entline5[0]
+    self.bitmap.draw_text(10, 80, 900, 32, $entline5[1], 0)
+    end
+    if @enmessages >=  7
+    self.bitmap.font.color = $entline6[0]
+    self.bitmap.draw_text(10, 100, 900, 32, $entline6[1], 0)
+    end
+    if @enmessages >= 6
+    self.bitmap.font.color = $entline7[0]
+    self.bitmap.draw_text(10, 120, 900, 32, $entline7[1], 0)
+    end
+    if @enmessages >= 5
+    self.bitmap.font.color = $entline8[0]
+    self.bitmap.draw_text(10, 140, 900, 32, $entline8[1], 0)
+    end
+   if @enmessages >= 4
+    self.bitmap.font.color = $entline9[0]
+    self.bitmap.draw_text(10, 160, 900, 32, $entline9[1], 0)
+    end
+   if @enmessages >= 3
+    self.bitmap.font.color = $entline10[0]
+    self.bitmap.draw_text(10, 180, 900, 32, $entline10[1], 0)
+   end
+   if @enmessages >= 2
+    self.bitmap.font.color = $entline11[0]
+    self.bitmap.draw_text(10, 200, 900, 32, $entline11[1], 0)
+   end
+   if @enmessages >= 1
+    self.bitmap.font.color = $entline12[0]
+    self.bitmap.draw_text(10, 220, 900, 32, $entline12[1], 0)
+   end 
+  end
+
+
+#Add message
+def entaddMessage(cor, msg)
+  $entline1 = $entline2
+  $entline2 = $entline3
+  $entline3 = $entline4
+  $entline4 = $entline5
+  $entline5 = $entline6
+  $entline6 = $entline7
+  $entline7 = $entline8
+  $entline8 = $entline9
+  $entline9 = $entline10
+  $entline10 = $entline11
+  $entline11 = $entline12
+  $entline12 = [Color.new(255,255,255), msg]
+   refresh
+end
+end
+  Audio.me_play("Audio/SE/Dive", 100, 40)
+  @view_logo = Viewport.new(350, 95, 544, 416)
+  @view_logo2= Viewport.new(0, 0, 544, 416)
+  
+  #--------------------
+  #Set the image logo 1
+  @entlogo = Sprite.new(@view_logo)
+  @entlogo.bitmap = Cache.system("Logo.png") 
+  @entlogo.opacity = 0
+  @entlogo.z = 1
+#---------------- *****
+#set the messages
+ @Creditos = EntMessages.new
+ @Creditos.entaddMessage(Color.new(255,255,255), "Equipe: ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Nome Da Equipe ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Roteiro e Pré-produção:")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Programação: ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Design: ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Produção Audio:")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Level Design(Cenários): ")#edit here
+ @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ 
+  #--------------------
+  #Set the image logo 2
+  @entlogo2 = Sprite.new(@view_logo2)
+  @entlogo2.bitmap = Cache.system("Logo2.png") 
+  @entlogo2.opacity = 0
+  @entlogo2.z = 1
+  #-----------------------------------------
+  #count until the break and doing the moves
+    for i in 0..255
+        if @entlogo.opacity < 255
+          @entlogo.opacity += 1
+        end
+        Graphics.update
+    end
+    for i in 0..150
+      if  @entlogo.opacity > 0
+       @entlogo.opacity -= 4
+       Graphics.update
+      end
+    end
+    if @entlogo.opacity == 0
+#--------------------------------------------
+#logo 2
+    for i in 0..255
+        if @entlogo2.opacity < 255
+          @entlogo2.opacity += 1
+           @Creditos.dispose  #The lines of "msg" will be erased
+        end
+        Graphics.update
+    end
+
+    for i in 0..150
+      if  @entlogo2.opacity > 0
+       @entlogo2.opacity -= 4
+       Graphics.update
+      end
+    end
+end
+@entlogo2 = nil
