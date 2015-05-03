@@ -29,7 +29,7 @@ class EntMessages < Sprite
     $entline10 = [Color.new(255,255,255), ""]
     $entline11 = [Color.new(255,255,255), ""]
     $entline12 = [Color.new(255,255,255), ""]
-    self.x = 70 #alinha ao centro, 1 = fica no canto esquerdo
+    self.x = 70 #align the center, 1 = is in the left corner
     self.y = 70 #300
     @enmessages = 11
     refresh
