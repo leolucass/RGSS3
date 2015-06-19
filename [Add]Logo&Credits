@@ -5,33 +5,48 @@
 #Do you set the strings or add more if you want.
 #~ #Search for "#edit here" to set the string texts
 #For pattern you have 12 lines. But you can add more following the code pattern
-#
-#have fun enjoy it. 
 #Enter
+#ver 2.0
+  module ConfigLogo
+  ##
+  ####
+  #######
+  ##############
+  ################################ 
+  #:Settings
+    LINES = 12 
+      
+    POSX = 10 #don't change
+    POSY = 0 #don't change
+    
+    def self.titlesColor
+      return 0 unless Color.new
+    colorTitles = Color.new(45,122,25) #color of titles at credits
+  end
+   def self.membersColor
+      return 0 unless Color.new
+    colorMembers = Color.new(255,255,255) #color of members at credits
+    end
+  ##################################
+  ###########
+  #######
+  ####
+  ##
+  end
 class EntMessages < Sprite
+  include ConfigLogo
   def initialize
     super
     self.bitmap = bitmap = Bitmap.new(700,777) #width and height
     self.bitmap.font.size = 17
     self.bitmap.font.name = "Segoe UI"
     #initialize the lines array
-    #index 0 = define color, index 1 = string field
-    #here is defined the numbers of lines available
-    $entline1 = [Color.new(255,255,255), ""]
-    $entline2 = [Color.new(255,255,255), ""]
-    $entline3 = [Color.new(255,255,255), ""]
-    $entline4 = [Color.new(255,255,255), ""]
-    $entline5 = [Color.new(255,255,255), ""]
-    $entline6 = [Color.new(255,255,255), ""]
-    $entline7 = [Color.new(255,255,255), ""]
-    $entline8 = [Color.new(255,255,255), ""]
-    $entline9 = [Color.new(255,255,255), ""]
-    $entline10 = [Color.new(255,255,255), ""]
-    $entline11 = [Color.new(255,255,255), ""]
-    $entline12 = [Color.new(255,255,255), ""]
-    self.x = 70 #align the center, 1 = is in the left corner
+    @entLine= [ConfigLogo::LINES]
+    #position 0 ==  color, position 1 = string field
+    self.x = 70 #align center, 1 = left corner
     self.y = 70 #300
-    @enmessages = 11
+    @enmessages = 12
+    @colorLines = Color.new(255,255,255)
     refresh
   end
       
@@ -40,71 +55,42 @@ class EntMessages < Sprite
   #write the messages at screen, taking the index 1 that 
   #matches the second parameter of array entline and cointain    
   #the space for input the string -> the msg
-    if @enmessages == 12
-    self.bitmap.font.color = $entline1[0]
-    self.bitmap.draw_text(10, 0, 900, 32, $entline1[1], 0)
+  #dentro do for colocar uma condição para alternar a cor
+  @aux = ConfigLogo::LINES
+  @aux2 = 20
+  @color_turn = ConfigLogo.membersColor
+ for i in 0..@aux
+    
+     if @enmessages == @aux
+    self.bitmap.font.color = @color_turn
+    self.bitmap.draw_text(ConfigLogo::POSX, ConfigLogo::POSY, 900, 32, @entLine[0], 0)
     end
-    if @enmessages >= 11
-    self.bitmap.font.color = $entline2[0]
-    self.bitmap.draw_text(10, 20, 900, 32, $entline2[1], 0)
-    end
-    if @enmessages >=  10
-    self.bitmap.font.color = $entline3[0]
-    self.bitmap.draw_text(10, 40, 900, 32, $entline3[1], 0)
-    end
-    if @enmessages >= 9
-    self.bitmap.font.color = $entline4[0]
-    self.bitmap.draw_text(10, 60, 900, 32, $entline4[1], 0)
-    end
-    if @enmessages >=  8
-    self.bitmap.font.color = $entline5[0]
-    self.bitmap.draw_text(10, 80, 900, 32, $entline5[1], 0)
-    end
-    if @enmessages >=  7
-    self.bitmap.font.color = $entline6[0]
-    self.bitmap.draw_text(10, 100, 900, 32, $entline6[1], 0)
-    end
-    if @enmessages >= 6
-    self.bitmap.font.color = $entline7[0]
-    self.bitmap.draw_text(10, 120, 900, 32, $entline7[1], 0)
-    end
-    if @enmessages >= 5
-    self.bitmap.font.color = $entline8[0]
-    self.bitmap.draw_text(10, 140, 900, 32, $entline8[1], 0)
-    end
-   if @enmessages >= 4
-    self.bitmap.font.color = $entline9[0]
-    self.bitmap.draw_text(10, 160, 900, 32, $entline9[1], 0)
-    end
-   if @enmessages >= 3
-    self.bitmap.font.color = $entline10[0]
-    self.bitmap.draw_text(10, 180, 900, 32, $entline10[1], 0)
+       if @enmessages >= (@aux-1)
+    self.bitmap.font.color = @color_turn
+    self.bitmap.draw_text(ConfigLogo::POSX, (ConfigLogo::POSY+@aux2), 900, 32, @entLine[i], 0)
+  end
+  
+ @aux -= 1
+ @aux2 += 20
+ 
+ if(@color_turn == ConfigLogo.titlesColor)
+   @color_turn = ConfigLogo.membersColor
+   elsif(@color_turn == ConfigLogo.membersColor)
+   @color_turn = ConfigLogo.titlesColor
    end
-   if @enmessages >= 2
-    self.bitmap.font.color = $entline11[0]
-    self.bitmap.draw_text(10, 200, 900, 32, $entline11[1], 0)
-   end
-   if @enmessages >= 1
-    self.bitmap.font.color = $entline12[0]
-    self.bitmap.draw_text(10, 220, 900, 32, $entline12[1], 0)
-   end 
+   
+    end
+   
   end
 
 
 #Add message
-def entaddMessage(cor, msg)
-  $entline1 = $entline2
-  $entline2 = $entline3
-  $entline3 = $entline4
-  $entline4 = $entline5
-  $entline5 = $entline6
-  $entline6 = $entline7
-  $entline7 = $entline8
-  $entline8 = $entline9
-  $entline9 = $entline10
-  $entline10 = $entline11
-  $entline11 = $entline12
-  $entline12 = [Color.new(255,255,255), msg]
+def entaddMessage(msg)
+  
+  for i in 0..(ConfigLogo::LINES-1)
+    @entLine[i] = @entLine[i+1] 
+    @entLine[i+1] = msg
+  end
    refresh
 end
 end
@@ -121,18 +107,19 @@ end
 #---------------- *****
 #set the messages
  @Creditos = EntMessages.new
- @Creditos.entaddMessage(Color.new(255,255,255), "Equipe: ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Nome Da Equipe ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Roteiro e Pré-produção:")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Programação: ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Design: ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Produção Audio:")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Level Design(Cenários): ")#edit here
- @Creditos.entaddMessage(Color.new(255,255,255), "Enter ")#edit here
+ 
+ @Creditos.entaddMessage("Equipe: ")#edit here
+ @Creditos.entaddMessage("nome  ")#edit here
+ @Creditos.entaddMessage("Roteiro e Pré-produção:")#edit here
+ @Creditos.entaddMessage("Enter,teste,teste,test ")#edit here
+ @Creditos.entaddMessage("Programação: ")#edit here
+ @Creditos.entaddMessage("Enter ")#edit here
+ @Creditos.entaddMessage("Design: ")#edit here
+ @Creditos.entaddMessage("Enter ")#edit here
+ @Creditos.entaddMessage("Produção Audio:")#edit here
+ @Creditos.entaddMessage("Enter ")#edit here
+ @Creditos.entaddMessage("Level Design(Cenários): ")#edit here
+ @Creditos.entaddMessage("Enter ")#edit here
  
   #--------------------
   #Set the image logo 2
@@ -144,30 +131,30 @@ end
   #count until the break and doing the moves
     for i in 0..255
         if @entlogo.opacity < 255
-          @entlogo.opacity += 1
+          @entlogo.opacity += 100
         end
         Graphics.update
     end
     for i in 0..150
       if  @entlogo.opacity > 0
-       @entlogo.opacity -= 4
+       @entlogo.opacity -= 100
        Graphics.update
       end
     end
     if @entlogo.opacity == 0
 #--------------------------------------------
 #logo 2
-    for i in 0..255
+    for i in 0..20#255
         if @entlogo2.opacity < 255
-          @entlogo2.opacity += 1
+          @entlogo2.opacity += 100
            @Creditos.dispose  #The lines of "msg" will be erased
         end
         Graphics.update
     end
 
-    for i in 0..150
+    for i in 0..20#150
       if  @entlogo2.opacity > 0
-       @entlogo2.opacity -= 4
+       @entlogo2.opacity -= 255
        Graphics.update
       end
     end
