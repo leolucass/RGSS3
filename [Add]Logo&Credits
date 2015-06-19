@@ -158,5 +158,6 @@ end
        Graphics.update
       end
     end
-end
+
 @entlogo2 = nil
+end
