@@ -7,6 +7,12 @@
 #If the player have stamina enough then he can run pressing the SHIFT key else he not can run
 #If thirst or hunger or hp <= 1 then Game Over
 #RGSS3
+#You can manipulate the values using events>call script. Example:
+#@actorId = 0
+#@value = - 10
+#@change = Game_Interpreter.new
+#@change.change_hunger(@actorId,@value)
+#you can change the change_hunger to change_thirst, change_sp, hp or stamina.
 #Script version 2.0
 # S  E  T  U  P  
 module EnterConfigHUD
@@ -283,6 +289,12 @@ class Scene_Map < Scene_Base
   end
 end
 class Game_Interpreter #thanks Sixth
+
+def change_thirst(actor_id,value)
+old_val = $game_party.members[actor_id].THIRST
+new_val = old_val + value
+$game_party.members[actor_id].THIRST= new_val
+end
   
   def change_hunger(actor_id,value)
     old_val = $game_party.members[actor_id].HUNGER
