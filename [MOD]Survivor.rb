@@ -1,4 +1,4 @@
-#Authors: leolucas(=Enter)
+#Authors: leolucas 
 #About this script: 
 #This MOD is a script that contain a 
 #HUD (HP,MP, thirsty, Stamina and Hunger bar);
